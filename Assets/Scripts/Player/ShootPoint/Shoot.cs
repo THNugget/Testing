@@ -4,28 +4,42 @@ using UnityEngine.InputSystem;
 
 public class Shoot : MonoBehaviour
 {
+    public Transform shootPoint;
     public GameObject bulletPrefab;
-    public Transform bulletTransform;
+    public float bulletSpeed;
     private bool canShoot = true;
-    public float shootCooldown = 0.5f;
+    private float shootCooldown = 0.5f;
+    //private Rigidbody2D rb;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    //private void Awake()
+    //{
+    //    rb = GetComponent<Rigidbody2D>();
+    //}
+
+
+    //private void Update()
+    //{
+    //    rb.linearVelocity = transform.right * bulletSpeed;
+    //}
+
+    private void Update()
     {
-        
+       shootCooldown -= Time.deltaTime;
+
+        if (shootCooldown <= 0f)
+         {
+              canShoot = true;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Shooting(InputAction.CallbackContext ctx)
     {
-        
-    }
-    public void ShootBullet(InputAction.CallbackContext ctx)
-    {
-        if (canShoot)
+        if (ctx.performed && canShoot)
         {
             canShoot = false;
-            Instantiate(bulletPrefab, bulletTransform.position, Quaternion.identity);
+            shootCooldown = 0.5f;
+            GameObject BulletIns = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
+            BulletIns.GetComponent<Rigidbody2D>().AddForce(BulletIns.transform.up * bulletSpeed);
         }
     }
 }
