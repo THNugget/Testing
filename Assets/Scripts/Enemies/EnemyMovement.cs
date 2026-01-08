@@ -13,7 +13,7 @@ public class EnemyMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         Vector2 direction = (player.position - transform.position).normalized;
         rb.linearVelocity = direction * enemySpeed;

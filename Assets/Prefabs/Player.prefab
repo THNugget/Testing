@@ -195,6 +195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6242780524712266246}
+  - component: {fileID: 5093439508524801766}
   m_Layer: 0
   m_Name: EnemyPossiblespawnsholder
   m_TagString: Untagged
@@ -224,6 +225,30 @@ Transform:
   - {fileID: 7848941773084562304}
   m_Father: {fileID: 3165832848994177225}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5093439508524801766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6982725044150527717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43986de978ad12e41afe70168c4f6fb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint:
+  - {fileID: 2381541627615444958}
+  - {fileID: 5599392340960945101}
+  - {fileID: 722866903632798297}
+  - {fileID: 6661809876561549492}
+  - {fileID: 2489413155378247310}
+  - {fileID: 7601270173832076308}
+  - {fileID: 7848941773084562304}
+  enemyPrefabs:
+  - {fileID: 0}
+  canSpawn: 1
+  spawnRate: 3
 --- !u!1 &7272847405173993643
 GameObject:
   m_ObjectHideFlags: 0
