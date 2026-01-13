@@ -10,11 +10,11 @@ public class Interact : MonoBehaviour
         if (ctx.ReadValue<float>() == 0)
             return;
 
-        RaycastHit2D hit = Physics2D.BoxCast(transform.position, boxSize, 0, Vector2.zero, 1, boxLayer);
+        RaycastHit2D hit = Physics2D.BoxCast(transform.position, boxSize, 0, Vector2.zero, 0, boxLayer);
 
-        if(hit)
+        if (hit && hit.collider.TryGetComponent(out Interactable interactable))
         {
-            Debug.Log(hit.collider.gameObject.name);
+            interactable.onInteract.Invoke();
 
         }
     }

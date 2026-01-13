@@ -17,6 +17,12 @@ public class KeypadNumenter : MonoBehaviour
     public GameObject button9;
     public GameObject button0;
 
+    private bool complete = false;
+
+    public GameObject door;
+
+    public PlayerMovement playerMovement;
+
     public string password = "2285";
 
     private const int maxChars = 4;
@@ -77,6 +83,16 @@ public class KeypadNumenter : MonoBehaviour
     //    }
 
     //}
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            playerMovement.canMove = true;
+            CharHolder.text = null;
+            gameObject.SetActive(false);
+        }
+    }
     private void FixedUpdate()
     {
         if (CharHolder.text.Length >= maxChars)
@@ -96,11 +112,27 @@ public class KeypadNumenter : MonoBehaviour
     IEnumerator DelayAction(float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
+        playerMovement.canMove = true;
+        CharHolder.text = null;
+        complete = true;
+        door.SetActive(false);
         gameObject.SetActive(false);
     }
     IEnumerator ResetInputField(float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
         CharHolder.text = null;
+    }
+    public void openKeypad()
+    {
+        if(complete == false)
+        {
+            gameObject.SetActive(true);
+            playerMovement.canMove = false;
+        }
+        else
+        {
+            Debug.Log("Keypad is already done.");
+        }
     }
 }
