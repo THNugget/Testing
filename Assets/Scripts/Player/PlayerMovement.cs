@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movement;
 
     private Rigidbody2D rb;
+    public bool canMove = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -18,7 +19,14 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.linearVelocity = movement * stats.speed;
+        if(canMove)
+        {
+            rb.linearVelocity = movement * stats.speed;
+        }
+        else
+        {
+            rb.linearVelocity = Vector2.zero;
+        }
     }
 
     public void Move(InputAction.CallbackContext ctx)

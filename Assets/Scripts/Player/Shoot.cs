@@ -9,6 +9,7 @@ public class Shoot : MonoBehaviour
     public float bulletSpeed;
     private bool canShoot = true;
     private float shootCooldown = 0.5f;
+    private PlayerMovement playerMovement;
     //private Rigidbody2D rb;
 
     //private void Awake()
@@ -21,9 +22,14 @@ public class Shoot : MonoBehaviour
     //{
     //    rb.linearVelocity = transform.right * bulletSpeed;
     //}
+    private void Awake()
+    {
+        playerMovement = GetComponent<PlayerMovement>();
+    }
 
     private void Update()
     {
+
        shootCooldown -= Time.deltaTime;
 
         if (shootCooldown <= 0f)
@@ -34,7 +40,7 @@ public class Shoot : MonoBehaviour
 
     public void Shooting(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed && canShoot)
+        if (ctx.performed && canShoot && playerMovement.canMove)
         {
             canShoot = false;
             shootCooldown = 0.5f;
