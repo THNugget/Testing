@@ -17,7 +17,7 @@ public class KeypadNumenter : MonoBehaviour
     public GameObject button9;
     public GameObject button0;
 
-    private bool complete = false;
+    [HideInInspector]public bool complete = false;
 
     public GameObject door;
 
